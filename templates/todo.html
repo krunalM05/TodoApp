@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>todo</title>
+</head>
+<body>
+    <h1 align="center">this is todo page</h1>
+    <ul>
+        {% for todo_item in all_items %}
+        <div style="margin:auto;width:30%;padding:10px;">
+        <li>{{todo_item.content}}
+            <form action="/deleteTodo/{{todo_item.id}}/"
+                  method="post" style="display:inline;">{% csrf_token %}
+            <input type="submit" value="delete">
+            </form>
+        </li>
+        </div>
+        {% endfor %}
+    </ul>
+    <div style="margin:auto;width:30%;padding:">
+        <form action="/addTodo/" method="post">{% csrf_token %}
+        <input type="text" name="content" placeholder="Add Item To TODO List"
+         style="padding:10px;">
+        <input type="submit" value="Add">
+        </form>
+    </div>
+</body>
+</html>
